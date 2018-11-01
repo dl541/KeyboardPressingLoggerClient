@@ -25,9 +25,15 @@ public class LoggerClient {
         BufferedWriter writer = new BufferedWriter(new FileWriter(String.format("%s.txt",df.format(timestamp))));
 
         while(t.sc.hasNext()) {
+            String receivedMessage = t.sc.nextLine();
+
+            if (receivedMessage.equals("quit")){
+                break;
+            }
+
             time = System.currentTimeMillis();
             timestamp = new Timestamp(time);
-            String log = String.format("%s\t%s\t%s\n",logIndex,df.format(timestamp),t.sc.nextLine());
+            String log = String.format("%s\t%s\t%s\n",logIndex,df.format(timestamp), receivedMessage);
             writer.write(log);
             System.out.println(log);
             logIndex += 1;
