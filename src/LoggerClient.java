@@ -18,7 +18,6 @@ public class LoggerClient {
     public static void main(String[] args) throws IOException {
         LoggerClient t = new LoggerClient();
         t.initializeConnection();
-        int logIndex = 0;
 
         long time = System.currentTimeMillis();
         Timestamp timestamp = new Timestamp(time);
@@ -33,10 +32,9 @@ public class LoggerClient {
 
             time = System.currentTimeMillis();
             timestamp = new Timestamp(time);
-            String log = String.format("%s\t%s\t%s\n",logIndex,df.format(timestamp), receivedMessage);
+            String log = String.format("%s\t%s\n",df.format(timestamp), receivedMessage);
             writer.write(log);
             System.out.println(log);
-            logIndex += 1;
         }
 
         writer.close();
